@@ -1,0 +1,46 @@
+﻿@model List<Animal>
+
+@{
+    ViewData["Title"] = "Animales";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Animales</h1>
+    <a asp-action="Crear" asp-controller="Animales">Nuevo</a>
+</div>
+
+<table class="table caption-top table-striped table-hover align-middle text-center">
+    <caption>Lista de Animales</caption>
+    <thead class="table-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Especie</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Peso (kg)</th>
+            @* Provisoriamente la sig. *@
+            @*<th scope="col">Propietario</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Nombre</td>
+            <td>@item.Especie</td>
+            <td>@item.Raza</td>
+            <td>@item.Sexo</td>
+            <td>@item.FechaNacimiento.ToShortDateString()</td>
+            <td>@item.Edad @item.MesesAños</td>
+            <td>@item.Peso</td>
+            @*<td>@item.Propietario</td>*@
+            <td><a asp-action="Editar(@item.ID)">Editar</a></td>
+            <td><a asp-action="Eliminar(@item.ID)">Eliminar</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
