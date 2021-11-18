@@ -8,11 +8,6 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        @* Atributos Razor (no es necesario especificar el controlador si va a usar
-           el mismo que llamó a esta acción *@
-        @*<form asp-action="Guardar" asp-controller="Animal" method="post">*@
-        @*<form asp-action="Guardar" method="post">*@
-        @* Atributo html con código C# (@...) *@
         <form action="@Url.Action("Guardar", "Animales")" method="post">
             <div class="form-group">
                 <label for="nombre">Nombre</label><br />

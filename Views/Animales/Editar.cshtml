@@ -4,12 +4,13 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Editar Datos Animal</h1>
+    <h1 class="display-4">Editar Datos de @Model.Nombre</h1>
 </div>
 
 <div class="row">
     <div class="col-md-6">
-        <form asp-action="Actualizar" method="post">
+        <form method="post">
+            <input type="number" name="id" value="@Model.ID" hidden />
             <div class="form-group">
                 <label for="nombre">Nombre</label><br />
                 <input type="text" name="nombre" title="nombre" value="@Model.Nombre" />
@@ -25,11 +26,19 @@
             <div class="form-group">
                 <label for="sexo">Sexo</label>
                 <select name="sexo" title="sexo">
-                    @* VER COMO MOSTRAR "ACTIVA" LA OPCION CORRESPONDIENTE AL VALOR GUARDADO *@
-                    <option value="Hembra">Hembra</option>
-                    <option value="Macho">Macho</option>
+                    @if (Model.Sexo == "Hembra")
+                    {
+                        <option value="Hembra" selected>Hembra</option>
+                        <option value="Macho">Macho</option>
+                    }
+                    else
+                    {
+                        <option value="Hembra">Hembra</option>
+                        <option value="Macho" selected>Macho</option>
+                    }
                 </select>
             </div>
+            @* VER COMO MOSTRAR LA FECHA GUARDADA *@
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de Nacimiento</label><br />
                 <input type="date" name="fechaNacimiento" title="fechaNacimiento" value="@Model.FechaNacimiento" />
@@ -37,17 +46,27 @@
             <div class="form-group">
                 <label for="edad">Edad</label><br />
                 <input type="number" name="edad" title="edad" value="@Model.Edad" />
-                @* VER COMO MOSTRAR "ACTIVO" EL RADIO CORRESPONDIENTE AL VALOR GUARDADO *@
-                <input type="radio" name="mesesAños" value="año/s" />
-                <label class="mesesAños">años</label>
-                <input type="radio" name="mesesAños" value="mes/es" />
-                <label class="mesesAños">meses</label>
+                @if (Model.MesesAños == "años")
+                {
+                    <input type="radio" name="mesesAños" value="años" checked />
+                    <label class="mesesAños">años</label>
+                    <input type="radio" name="mesesAños" value="meses" />
+                    <label class="mesesAños">meses</label>
+                }
+                else
+                {
+                    <input type="radio" name="mesesAños" value="años" />
+                    <label class="mesesAños">años</label>
+                    <input type="radio" name="mesesAños" value="meses" checked />
+                    <label class="mesesAños">meses</label>
+                }
             </div>
             <div class="form-group">
                 <label for="peso">Peso</label><br />
                 <input type="number" name="peso" title="peso" value="@Model.Peso" /> <label for="peso">kg</label>
             </div>
-            <input type="submit" value="Enviar" />
+            <input type="submit" value="Cancelar" asp-controller="Animales" asp-action="Index" />
+            <input type="submit" value="Enviar" asp-controller="Animales" asp-action="Actualizar" />
         </form>
     </div>
 </div>

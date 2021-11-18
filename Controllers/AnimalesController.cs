@@ -80,19 +80,14 @@ namespace CloudVet.Controllers
                 actualizar.Peso = peso;
             }
             // Actualizar en la BD
-            //try
-            //{
-            //    _context.Animales.Add(actualizar);
-            //    _context.SaveChanges();
-            //}
-            //catch
-            //{
-            //    Console.WriteLine("¿Cómo validar en la Vista que ingrese todos los campos requeridos?");
-            //}
+            _context.Animales.Update(actualizar);
+            _context.SaveChanges();
 
             // ¿Cómo lanzar ventana modal de confirmación?
             return RedirectToAction("Index");
         }
+
+        // * * * AGREGAR ACCIÓN DELETE * * * //
 
         private Animal BuscarPorID(int id)
         {
