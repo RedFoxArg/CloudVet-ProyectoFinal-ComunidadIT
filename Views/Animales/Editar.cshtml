@@ -38,11 +38,19 @@
                     }
                 </select>
             </div>
-            @* VER COMO MOSTRAR LA FECHA GUARDADA *@
+            @* MOSTRAR LA FECHA GUARDADA: con asp-for="nombre de la propiedad del modelo" *@
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de Nacimiento</label><br />
-                <input type="date" name="fechaNacimiento" title="fechaNacimiento" value="@Model.FechaNacimiento" />
+                <input type="date" name="fechaNacimiento" title="fechaNacimiento" asp-for="FechaNacimiento" />
             </div>
+            @if (Model.Archivado)
+            {
+                <div class="form-group">
+                    <label for="fechaFalle">Fecha de Fallecimiento</label><br />
+                    <input type="date" name="fechaFalle" title="fechaFalle" asp-for="FechaFalle" />
+                </div>
+            }
+
             <div class="form-group">
                 <label for="edad">Edad</label><br />
                 <input type="number" name="edad" title="edad" value="@Model.Edad" />
@@ -65,8 +73,8 @@
                 <label for="peso">Peso</label><br />
                 <input type="number" name="peso" title="peso" value="@Model.Peso" /> <label for="peso">kg</label>
             </div>
-            <input type="submit" value="Cancelar" asp-controller="Animales" asp-action="Index" />
-            <input type="submit" value="Enviar" asp-controller="Animales" asp-action="Actualizar" />
+            <input type="submit" value="Cancelar" asp-controller="Animales" asp-action="Direccionar" />
+            <input type="submit" value="Guardar" class="btn-primary" asp-controller="Animales" asp-action="Actualizar" />
         </form>
     </div>
 </div>

@@ -1,0 +1,52 @@
+﻿@model List<Animal>
+
+@{
+    ViewData["Title"] = "Archivo Animales";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Archivo</h1>
+    <a asp-action="Index">Volver al Inicio</a>
+</div>
+
+<table class="table caption-top table-striped table-hover align-middle text-center">
+    <caption>Archivo de Animales</caption>
+    <thead class="table-light">
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Especie</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Fecha de Fallecimiento</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Peso (kg)</th>
+            @* Provisoriamente la sig. *@
+            @*<th scope="col">Propietario</th>*@
+            <th><i class="bi bi-pencil-square"></i></th>
+            <th><i class="bi bi-toggle-on"></i></th>
+            <th><i class="bi bi-trash"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            @if (item.Archivado && !item.Inactivo)
+            {
+        <tr asp-controller="Animales" asp-action="Editar" asp-route-id="@item.ID">
+            <td>@item.Nombre</td>
+            <td>@item.Especie</td>
+            <td>@item.Raza</td>
+            <td>@item.Sexo</td>
+            <td>@item.FechaNacimiento.ToShortDateString()</td>
+            <td>@item.FechaFalle.ToShortDateString()</td>
+            <td>@item.Edad @item.MesesAños</td>
+            <td>@item.Peso</td>
+            <td><a asp-controller="Animales" asp-action="Editar" asp-route-id="@item.ID">Editar</a></td>
+            <td><a asp-controller="Animales" asp-action="Desarchivar" asp-route-id="@item.ID" class="text-success">Desarchivar</a>
+            <td><a asp-controller="Animales" asp-action="Eliminar" asp-route-id="@item.ID" class="text-danger">Eliminar</a></td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -29,6 +30,14 @@ namespace CloudVet.Models
         public string MesesAños { get; set; }
 
         public float Peso { get; set; }
+        
+        [DefaultValue("false")]
+        public bool Inactivo { get; set; }
+
+        public DateTime FechaFalle { get; set; }
+
+        [DefaultValue("false")]
+        public bool Archivado { get; set; }
 
         //[Required]
         //public int PropietarioID { get; set; }

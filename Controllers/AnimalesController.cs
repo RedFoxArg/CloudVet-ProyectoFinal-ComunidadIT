@@ -65,7 +65,7 @@ namespace CloudVet.Controllers
             return View(editar);
         }
 
-        public IActionResult Actualizar(int id, string nombre, string especie, string raza, string sexo, DateTime fechaNacimiento, short edad, string mesesAños, float peso)
+        public IActionResult Actualizar(int id, string nombre, string especie, string raza, string sexo, DateTime fechaNacimiento, DateTime fechaFalle, short edad, string mesesAños, float peso)
         {
             Animal actualizar = BuscarPorID(id);
             if (actualizar != null)
@@ -75,6 +75,10 @@ namespace CloudVet.Controllers
                 actualizar.Raza = raza;
                 actualizar.Sexo = sexo;
                 actualizar.FechaNacimiento = fechaNacimiento;
+                if (actualizar.Archivado)
+                {
+                    actualizar.FechaFalle = fechaFalle;
+                }
                 actualizar.Edad = edad;
                 actualizar.MesesAños = mesesAños;
                 actualizar.Peso = peso;
@@ -84,10 +88,62 @@ namespace CloudVet.Controllers
             _context.SaveChanges();
 
             // ¿Cómo lanzar ventana modal de confirmación?
+            return Direccionar(actualizar.ID);
+        }
+
+        public IActionResult Direccionar(int id)
+        {
+            Animal encontrado = BuscarPorID(id);
+            if (encontrado != null && encontrado.Archivado)
+            {
+                return RedirectToAction("VerArchivados");
+            }
             return RedirectToAction("Index");
         }
 
-        // * * * AGREGAR ACCIÓN DELETE * * * //
+        public IActionResult Archivar(int id)
+        {
+            Animal animal = BuscarPorID(id);
+            if (animal != null)
+            {
+                animal.Archivado = true;
+            }
+            // Actualizar en la BD
+            _context.Animales.Update(animal);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Desarchivar(int id)
+        {
+            Animal animal = BuscarPorID(id);
+            if (animal != null)
+            {
+                animal.Archivado = false;
+            }
+            // Actualizar en la BD
+            _context.Animales.Update(animal);
+            _context.SaveChanges();
+            return RedirectToAction("VerArchivados");
+        }
+
+        public IActionResult VerArchivados()
+        {
+            return View(_context.Animales.ToList());
+        }
+
+        public IActionResult Eliminar(int id)
+        {
+            Animal animal = BuscarPorID(id);
+            if (animal != null)
+            {
+                animal.Inactivo = true;
+            }
+            // Actualizar en la BD
+            _context.Animales.Update(animal);
+            _context.SaveChanges();
+            return Direccionar(id);
+        }
 
         private Animal BuscarPorID(int id)
         {

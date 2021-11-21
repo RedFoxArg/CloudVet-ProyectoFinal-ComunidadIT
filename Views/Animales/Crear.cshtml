@@ -6,45 +6,47 @@
 <div class="text-center">
     <h1 class="display-4">Nuevo Animal</h1>
 </div>
+
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form action="@Url.Action("Guardar", "Animales")" method="post">
             <div class="form-group">
                 <label for="nombre">Nombre</label><br />
-                <input type="text" name="nombre" title="nombre" />
+                <input class="col-md-6" type="text" name="nombre" title="nombre" />
             </div>
             <div class="form-group">
                 <label for="especie">Especie</label><br />
-                <input type="text" name="especie" title="especie" />
+                <input class="col-md-6" type="text" name="especie" title="especie" />
             </div>
             <div class="form-group">
                 <label for="raza">Raza</label><br />
-                <input type="text" name="raza" title="raza" />
+                <input class="col-md-6" type="text" name="raza" title="raza" />
             </div>
             <div class="form-group">
-                <label for="sexo">Sexo</label>
-                <select name="sexo" title="sexo">
+                <label for="sexo">Sexo</label><br />
+                <select class="col-md-2" name="sexo" title="sexo">
                     <option value="Hembra">Hembra</option>
                     <option value="Macho">Macho</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de Nacimiento</label><br />
-                <input type="date" name="fechaNacimiento" title="fechaNacimiento" />
+                <input class="col-md-2" type="date" name="fechaNacimiento" title="fechaNacimiento" />
             </div>
             <div class="form-group">
                 <label for="edad">Edad</label><br />
-                <input type="number" name="edad" title="edad" />
-                <input type="radio" name="mesesAños" value="año/s" />
+                <input class="col-md-3" type="number" name="edad" title="edad" />
+                <input type="radio" name="mesesAños" value="años" />
                 <label class="mesesAños">años</label>
-                <input type="radio" name="mesesAños" value="mes/es" />
+                <input type="radio" name="mesesAños" value="meses" />
                 <label class="mesesAños">meses</label>
             </div>
             <div class="form-group">
                 <label for="peso">Peso</label><br />
-                <input type="number" name="peso" title="peso" /> <label for="peso">kg</label>
+                <input class="col-md-3" type="number" name="peso" title="peso" /> <label for="peso">kg</label>
             </div>
-            <input type="submit" value="Guardar" />
+            <input type="submit" value="Cancelar" asp-controller="Animales" asp-action="Direccionar" />
+            <input type="submit" value="Guardar" class="btn-primary" />
         </form>
     </div>
 </div>

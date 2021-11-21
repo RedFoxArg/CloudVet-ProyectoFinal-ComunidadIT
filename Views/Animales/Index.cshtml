@@ -9,6 +9,10 @@
     <a asp-controller="Animales" asp-action="Crear" >Nuevo</a>
 </div>
 
+<div class="text-right">
+    <a asp-action="VerArchivados">Ver archivados</a>
+</div>
+
 <table class="table caption-top table-striped table-hover align-middle text-center">
     <caption>Lista de Animales</caption>
     <thead class="table-light">
@@ -22,22 +26,30 @@
             <th scope="col">Peso (kg)</th>
             @* Provisoriamente la sig. *@
             @*<th scope="col">Propietario</th>*@
+            @*<th><i class="bi archive"></i></th>*@
+            <th><i class="bi bi-pencil-square"></i></th>
+            <th><i class="bi bi-toggle-off"></i></th>
+            <th><i class="bi bi-trash"></i></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in @Model)
         {
-        <tr asp-controller="Animales" asp-action="Editar" asp-route-id="@item.ID" >
-            <td>@item.Nombre</td>
-            <td>@item.Especie</td>
-            <td>@item.Raza</td>
-            <td>@item.Sexo</td>
-            <td>@item.FechaNacimiento.ToShortDateString()</td>
-            <td>@item.Edad @item.MesesAños</td>
-            <td>@item.Peso</td>
-            <td><a asp-controller="Animales" asp-action="Editar" asp-route-id="@item.ID" >Editar</a></td>
-            <td><a asp-controller="Animales" asp-action="Eliminar" asp-route-id="@item.ID" class="text-danger" >Eliminar</a></td>
-        </tr>
+            @if (!item.Archivado && !item.Inactivo)
+            {
+            <tr asp-controller="Animales" asp-action="Editar" asp-route-id="@item.ID">
+                <td>@item.Nombre</td>
+                <td>@item.Especie</td>
+                <td>@item.Raza</td>
+                <td>@item.Sexo</td>
+                <td>@item.FechaNacimiento.ToShortDateString()</td>
+                <td>@item.Edad @item.MesesAños</td>
+                <td>@item.Peso</td>
+                <td><a asp-controller="Animales" asp-action="Editar" asp-route-id="@item.ID">Editar</a></td>
+                <td><a asp-controller="Animales" asp-action="Archivar" asp-route-id="@item.ID" class="text-warning">Archivar</a>
+                <td><a asp-controller="Animales" asp-action="Eliminar" asp-route-id="@item.ID" class="text-danger">Eliminar</a></td>
+            </tr>
+            }
         }
     </tbody>
 </table>
