@@ -12,19 +12,19 @@
         <form method="post">
             <input type="number" name="id" value="@Model.ID" hidden />
             <div class="form-group">
-                <label for="nombre">Nombre</label><br />
+                <label asp-for="Nombre"></label><br />
                 <input type="text" name="nombre" title="nombre" value="@Model.Nombre" />
             </div>
             <div class="form-group">
-                <label for="especie">Especie</label><br />
+                <label asp-for="Especie"></label><br />
                 <input type="text" name="especie" title="especie" value="@Model.Especie" />
             </div>
             <div class="form-group">
-                <label for="raza">Raza</label><br />
+                <label asp-for="Raza"></label><br />
                 <input type="text" name="raza" title="raza" value="@Model.Raza" />
             </div>
             <div class="form-group">
-                <label for="sexo">Sexo</label>
+                <label asp-for="Sexo"></label>
                 <select name="sexo" title="sexo">
                     @if (Model.Sexo == "Hembra")
                     {
@@ -38,15 +38,15 @@
                     }
                 </select>
             </div>
-            @* MOSTRAR LA FECHA GUARDADA: con asp-for="nombre de la propiedad del modelo" *@
+            
             <div class="form-group">
-                <label for="fechaNacimiento">Fecha de Nacimiento</label><br />
+                <label asp-for="FechaNacimiento"></label><br />
                 <input type="date" name="fechaNacimiento" title="fechaNacimiento" asp-for="FechaNacimiento" />
             </div>
             @if (Model.Archivado)
             {
                 <div class="form-group">
-                    <label for="fechaFalle">Fecha de Fallecimiento</label><br />
+                    <label asp-for="FechaFalle"></label><br />
                     <input type="date" name="fechaFalle" title="fechaFalle" asp-for="FechaFalle" />
                 </div>
             }

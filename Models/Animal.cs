@@ -10,30 +10,37 @@ namespace CloudVet.Models
 {
     public class Animal : EntityBase
     {
-        // ID lo hereda de la clase EntityBase
         [Required]
+        [Display(Name = "Nombre")]
         public string Nombre { get; set; }
 
         [Required]
+        [Display(Name = "Especie")]
         public string Especie { get; set; }
 
+        [Display(Name = "Raza")]
         public string Raza { get; set; }
 
         [Required]
+        [Display(Name = "Sexo")]
         public string Sexo { get; set; }
 
+        [Display(Name = "Fecha de Nacimiento")]
         public DateTime FechaNacimiento { get; set; }
 
+        [Display(Name = "Edad")]
         public short Edad { get; set; }
 
         [Required]
         public string MesesAños { get; set; }
 
+        [Display(Name = "Peso")]
         public float Peso { get; set; }
         
         [DefaultValue("false")]
         public bool Inactivo { get; set; }
 
+        [Display(Name = "Fecha de Fallecimiento")]
         public DateTime FechaFalle { get; set; }
 
         [DefaultValue("false")]
@@ -63,8 +70,5 @@ namespace CloudVet.Models
         // DesparacitarioComments
         // FechaDesparasitacion
         // ProximaFechaDesparasitacion
-
-
-
     }
 }

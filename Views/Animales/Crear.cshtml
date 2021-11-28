@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Animal
+
+@{
     ViewData["Title"] = "Nuevo Animal";
 }
 
@@ -11,42 +13,42 @@
     <div class="col-md-12">
         <form action="@Url.Action("Guardar", "Animales")" method="post">
             <div class="form-group">
-                <label for="nombre">Nombre</label><br />
-                <input class="col-md-6" type="text" name="nombre" title="nombre" />
+                <label asp-for="Nombre"></label><br />
+                <input class="col-md-6" type="text" name="nombre" title="Nombre" />
             </div>
             <div class="form-group">
-                <label for="especie">Especie</label><br />
-                <input class="col-md-6" type="text" name="especie" title="especie" />
+                <label asp-for="Especie"></label><br />
+                <input class="col-md-6" type="text" name="especie" title="Especie" />
             </div>
             <div class="form-group">
-                <label for="raza">Raza</label><br />
-                <input class="col-md-6" type="text" name="raza" title="raza" />
+                <label asp-for="Raza"></label><br />
+                <input class="col-md-6" type="text" name="raza" title="Raza" />
             </div>
             <div class="form-group">
-                <label for="sexo">Sexo</label><br />
-                <select class="col-md-2" name="sexo" title="sexo">
+                <label asp-for="Sexo"></label><br />
+                <select class="col-md-2" name="sexo" title="Sexo">
                     <option value="Hembra">Hembra</option>
                     <option value="Macho">Macho</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="fechaNacimiento">Fecha de Nacimiento</label><br />
-                <input class="col-md-2" type="date" name="fechaNacimiento" title="fechaNacimiento" />
+                <label asp-for="FechaNacimiento"></label><br />
+                <input class="col-md-2" type="date" name="fechaNacimiento" title="Fecha de Nacimiento" />
             </div>
             <div class="form-group">
-                <label for="edad">Edad</label><br />
-                <input class="col-md-3" type="number" name="edad" title="edad" />
+                <label asp-for="Edad"></label><br />
+                <input class="col-md-3" type="number" name="edad" title="Edad" />
                 <input type="radio" name="mesesAños" value="años" />
                 <label class="mesesAños">años</label>
                 <input type="radio" name="mesesAños" value="meses" />
                 <label class="mesesAños">meses</label>
             </div>
             <div class="form-group">
-                <label for="peso">Peso</label><br />
-                <input class="col-md-3" type="number" name="peso" title="peso" /> <label for="peso">kg</label>
+                <label asp-for="Peso"></label><br />
+                <input class="col-md-3" type="number" name="peso" title="Peso" /> <label for="peso">kg</label>
             </div>
-            <input type="submit" value="Cancelar" asp-controller="Animales" asp-action="Direccionar" />
-            <input type="submit" value="Guardar" class="btn-primary" />
+            <input type="submit" value="Cancelar" title="Cancelar" asp-controller="Animales" asp-action="Direccionar" />
+            <input type="submit" value="Guardar" title="Guardar" class="btn-primary" />
         </form>
     </div>
 </div>

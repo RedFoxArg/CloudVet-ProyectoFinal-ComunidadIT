@@ -17,7 +17,7 @@ namespace CloudVet.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Animales.ToList());
+            return View(_context.Animales.Where(a => !a.Archivado && !a.Inactivo).ToList());
         }
 
         public IActionResult Crear()
@@ -111,6 +111,7 @@ namespace CloudVet.Controllers
             // Actualizar en la BD
             _context.Animales.Update(animal);
             _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -124,14 +125,16 @@ namespace CloudVet.Controllers
             // Actualizar en la BD
             _context.Animales.Update(animal);
             _context.SaveChanges();
+
             return RedirectToAction("VerArchivados");
         }
 
         public IActionResult VerArchivados()
         {
-            return View(_context.Animales.ToList());
+            return View(_context.Animales.Where(a => a.Archivado && !a.Inactivo).ToList());
         }
 
+        // FAKE DELETION
         public IActionResult Eliminar(int id)
         {
             Animal animal = BuscarPorID(id);
